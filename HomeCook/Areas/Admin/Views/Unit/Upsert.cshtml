@@ -1,0 +1,54 @@
+﻿@model HC.Model.ViewModel.UnitVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Creat Unit";
+    if (Model.Unit.Id != 0)
+    {
+        title = "Update Unit";
+    }
+}
+
+<form method="post" asp-action="Upsert">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (Model.Unit.Id != null)
+    {
+        <input type="hidden" asp-for="Unit.Id" />
+    }
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary"> @title </h2>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-4"> <label asp-for="Unit.Name"></label>  </div>
+        <div class=" col-8"> <input class="form-control" asp-for="Unit.Name" /> 
+        <span asp-validation-for="Unit.Name" class="text-danger"></span> </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-4"> <label asp-for="Unit.CategoryId"></label>  </div>
+        <div class=" col-8">
+            @Html.DropDownListFor(m => m.Unit.CategoryId, Model.CategoryList,
+                                "--Select category--", new { @class = "form-control" })
+            <span asp-validation-for="Unit.CategoryId" class="text-danger"></span> 
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <div class="col-8 offset-4">
+            @if (Model.Unit.Id != 0)
+            {
+                <partial name="_EditAndBackToListButton" model="Model.Unit.Id" />
+            }
+            else
+            {
+                <partial name="_NewAndBackToListButton" model="Model.Unit.Id" />
+
+            }
+
+
+        </div>
+    </div>
+</form>
+

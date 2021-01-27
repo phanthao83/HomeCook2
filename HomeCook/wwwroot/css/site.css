@@ -1,0 +1,167 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+avatars__item
+/* -------------------------------------------------- */
+ul.avatars {
+    display: flex ; 
+    list-style-type : none ;
+    margin: auto ; 
+    padding : 0px 7px 0px 0px ; 
+    z-index : 1 ; 
+}
+
+li.avatars_item {
+    height: 98px ;
+    margin: 0px 0px 0px 0px ;
+    padding: 0px 0px 0px 0px ;
+    position: relative ;
+    width: 84px ;
+}
+
+li.avatars_item:nth-child( 1 ) { z-index: 9; }
+li.avatars_item:nth-child( 2 ) {  z-index: 8;}
+li.avatars_item:nth-child( 3 ) {  z-index: 7;}
+li.avatars_item:nth-child( 4) {   z-index: 6;}
+li.avatars_item:nth-child( 5 ) {
+    z-index: 5;
+}
+li.avatars_item:nth-child( 6 ) {
+    z-index: 4;
+}
+li.avatars_item:nth-child( 7 ) {
+    z-index: 3;
+}
+li.avatars_item:nth-child( 8 ) {
+    z-index: 2;
+}
+li.avatars_item:nth-child( 9 ) {
+    z-index: 1;
+}
+
+img.avatarts__img,
+span.avatars__initials,
+span.avatars__others {
+    background-color: #596376 ; 
+    border: 2px solid #1F2532 ; 
+    border-radius: 100px 100px 100px 100px ; 
+    color: #FFFFFF ; 
+    display: block ; 
+    font-family : sans-serif ; 
+    font-size : 12px ; 
+    font-weight : 100 ; 
+    height : 90px ; 
+    line-height: 90px ; 
+    text-align : center ; 
+    width : 90px ; 
+}
+
+span.avatars__others {
+    background-color: #1E8FE1;
+}
+
+
+
+
+.productimage {
+    position: relative;
+    display: inline-block;
+}
+
+.overlay {
+    display: none;
+}
+
+.productimage:hover .overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /* All other styling - see example */
+     vertical-align: top;
+}
+
+.productbigimage {
+    position: relative;
+    display: inline-block;
+    width: 98px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    
+}

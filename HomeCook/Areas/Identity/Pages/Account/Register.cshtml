@@ -1,0 +1,176 @@
+﻿@page
+@model RegisterModel
+@using HC.Model
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+    <h4>Create a new account.</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="row">
+
+        <div class="card border-primary mb-3" style="width : 49% ; ">
+            <div class="card-header">Login Information</div>
+            <div class="card-body">
+                <div class="form-group row ">
+                    <div class="col-4"></div>
+                    <div class="col-8">
+                        <input type="radio" name="rdUserRole" value="@UserType.CustomerRole" checked> Is Customer
+                        &nbsp; &nbsp;
+                        <input type="radio" name="rdUserRole" value="@UserType.SupplierRole"> Is Seller
+                        &nbsp; &nbsp;
+                        <input type="radio" name="rdUserRole" value="@UserType.AdminRole"> Is Admin
+                    </div>
+
+                </div>
+                <div class="form-group row ">
+                    <div class="col-4"> <label asp-for="Input.Email"></label> </div>
+                    <div class="col-8"><input asp-for="Input.Email" class="form-control" /> </div>
+                </div>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <div class="form-group row ">
+                    <div class="col-4"> <label asp-for="Input.Password"></label> </div>
+                    <div class="col-8">   <input asp-for="Input.Password" class="form-control" value="P@ssword123" /> </div>
+                </div>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <div class="form-group row">
+                    <div class="col-4"> <label asp-for="Input.ConfirmPassword"></label> </div>
+                    <div class="col-8">    <input asp-for="Input.ConfirmPassword" class="form-control" value="P@ssword123" /> </div>
+                </div>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+                <div class="form-group row ">
+                    <div class="col-4 "><label asp-for="Input.AvartarUrl"></label></div>
+                    <div class="col-8 ">
+                        <input type="file" class="filepond" name="filepond"
+                               data-max-file-size="3MB" data-max-files="1" id="exampleInputFile" aria-describedby="fileHelp">
+                        <input asp-for="Input.AvartarUrl" hidden   />
+                    </div>
+
+                    <small id="fileHelp" class="form-text text-muted">Your avatar will be shown to customers. </small>
+                    <img id="avartar" src="" />
+                </div>
+
+
+            </div>
+
+        </div>
+        &nbsp;
+        <div class="card border-info mb-3 " style="width :50% ; ">
+            <div class="card-header">Personal Information</div>
+            <div class="card-body">
+                <small id="fileHelp" class="form-text text-muted">Personal information is only sent to customer/supplier when the order is purchased. </small>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Name" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.Country"></label>
+                    </div>
+                    <div class="col-8">
+                        <select class="custom-select">
+                            <option value="1" selected>US</option>
+                            <option value="2">Canada</option>
+                            <option value="3">Vietnam</option>
+                        </select>
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Country" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.Address1"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Address1" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Address1" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.Address2"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Address2" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Address2" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.City"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.City" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.State"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.State" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.State" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.PostCode"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.PostCode" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.PostCode" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Input.PhoneNumber"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-5 offset-3 "> <button type="submit" class="btn btn-primary form-check form-control ">Register</button></div>
+
+</form>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="~/js/filepondDelcare.js"></script>
+    <script>
+         $(document).ready(function () {
+            createFilePond("@Url.Action("UploadAvatar", "User")", "Input_AvartarUrl");
+         });
+
+    </script>
+}

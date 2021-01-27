@@ -1,0 +1,233 @@
+﻿@using  HC.Model
+
+@model HC.Model.ViewModel.ProductVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Creat Product";
+    if (Model.Product.Id != 0)
+    {
+        title = "Update Product";
+    }
+}
+
+<form method="post" asp-action="Upsert">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    @if (Model.Product.Id != 0)
+    {
+        <input type="hidden" asp-for="Product.Id" />
+    }
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary"> @title </h2>
+        </div>
+    </div>
+    <input type="hidden" asp-for="Product.UserId" />
+    <input type="hidden" asp-for="Product.AvgRating" />
+    <input type="hidden" asp-for="Product.Status" />
+    <input type="hidden" asp-for="PicFileNames" />
+    <input type="hidden" asp-for="UploadedImgIdBeRemoved" />
+    <input type="hidden" asp-for="MaxUploadFileNumber" />
+    @if (User.IsInRole(UserType.AdminRole))
+    {
+        <div class="form-group row " style="align">
+            <div class="col-8  offset-4">
+                @switch (Model.Product.Status)
+                {
+                    case "A":
+                        <button class="btn btn-danger btn-sm" type="button" onclick="DeletePRoduct(@Model.Product.Id)">Delete product</button>
+                        break;
+                    case "P":
+                        <button class="btn btn-success btn-sm" type="button" onclick="ActivateProduct(@Model.Product.Id)">Activate product </button>
+                        <span></span>
+                        <button class="btn btn-danger btn-sm" type="button" onclick="DeletePRoduct(@Model.Product.Id)">Delete product </button>
+                        break;
+                    case "D":
+                        <button class="btn btn-success btn-sm" type="button" onclick="ActivateProduct(@Model.Product.Id)">Activate product </button>
+                        break;
+
+                    default:
+                        break;
+                }
+
+
+            </div>
+
+        </div>
+    }
+
+    <div class="form-group row">
+        <div class="col-4"> <label asp-for="Product.CategoryId"></label>  </div>
+        <div class=" col-8">
+            @Html.DropDownListFor(m => m.Product.CategoryId, Model.CategoryList,
+                                "--Select category--", new { @class = "form-control" })
+            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-4"> <label asp-for="Product.Name"></label>  </div>
+        <div class=" col-8"> <input class="form-control" asp-for="Product.Name" /> <span asp-validation-for="Product.Name" class="text-danger"></span> </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-4"> <label asp-for="Product.Description"></label>  </div>
+        <div class=" col-8"> <textarea class="form-control" asp-for="Product.Description"></textarea> <span asp-validation-for="Product.Description" class="text-danger"></span> </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-4"> <label asp-for="Product.Price"></label>  </div>
+        <div class=" col-8"> <input class="form-control" asp-for="Product.Price" /> <span asp-validation-for="Product.Price" class="text-danger"></span> </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-4"> <label asp-for="Product.UnitId"></label>  </div>
+        <div class=" col-8">
+            @Html.DropDownListFor(m => m.Product.UnitId, Model.UnitList,
+                                "--Select category--", new { @class = "form-control" })
+            <span asp-validation-for="Product.UnitId" class="text-danger"></span>
+        </div>
+    </div>
+
+
+
+    @if (Model.Images != null)
+    {
+        <div class="form-group row ">
+            <div class="col-4 "><label> Uploaded Images</label></div>
+        </div>
+        <div class="row ">
+            @foreach (var img in Model.Images)
+            {
+                var imgsource = Model.ImagePath + "\\" + img.FileName;
+                var imgId = "PicElement" + img.Id;
+                var addBtn = "AddBtn" + img.Id;
+                var removeBtn = "RemoveBtn" + img.Id;
+
+                <div class="col-4 productimage">
+
+                    <img src="@imgsource" id="@imgId" width="100%" />
+                    <div class="overlay">
+                        <a onclick="RemoveUploadImg(@addBtn, @removeBtn, @imgId,  @img.Id)" class="btn btn-danger btn-sm" id="@removeBtn">
+                            <i class="fas fa-minus-circle"></i> Remove
+                        </a>
+
+                        <a onclick="ReAddUploadImg(@addBtn, @removeBtn, @imgId,  @img.Id)" class="btn btn-danger btn-sm" id="@addBtn" hidden>
+                            <i class="fas fas fa-plus-circle"></i> Add
+                        </a>
+                    </div>
+
+
+                </div>
+
+
+            }
+        </div>
+        <br />
+        <div class="form-group row ">
+            <div class="col-4 "><label> Upload more </label></div>
+            <div class="col-8 ">
+                <input type="file" class="filepond" name="filepond" multiple
+                       data-max-file-size="3MB" data-max-files="3" id="exampleInputFile" aria-describedby="fileHelp">
+            </div>
+        </div>
+        @if (Model.ErrorMessage.Length > 0)
+        {
+            <span class="text-danger"> @Model.ErrorMessage </span>
+        }
+
+    }
+    else
+    {
+        <div class="form-group row ">
+            <div class="col-4 "><label> Upload Images</label></div>
+            <div class="col-8 ">
+                <input type="file" class="filepond" name="filepond" multiple
+                       data-max-file-size="3MB" data-max-files="3" id="exampleInputFile" aria-describedby="fileHelp">
+            </div>
+
+        </div>
+    }
+
+
+    <div class="form-group row">
+
+        <div class="col-8 offset-4">
+            @if (Model.Product.Id != 0)
+            {
+                <partial name="_EditAndBackToListButton" model="Model.Product.Id" />
+            }
+            else
+            {
+                <partial name="_NewAndBackToListButton" model="Model.Product.Id" />
+
+            }
+
+
+        </div>
+    </div>
+</form>
+
+
+@section Scripts{
+    <script src="https://cdn.tiny.cloud/1/n94ifuzvl80pchikopiwgz2esrw8n28dwcywvpejlqrregfp/tinymce/5/tinymce.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="~/js/filepondDelcare.js"></script>
+    <script src="~/js/product_function.js"></script>
+    
+    <script>
+
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+        });
+
+        $(document).ready(function () {
+            createFilePond("@Url.Action("UploadFile", "Product")", "PicFileNames");
+        });
+
+
+        function RemoveUploadImg(addBtn, removeBtn, imgElement, imgId) {
+            //console.log("hidden " + elementId);
+            // elementId.hidden = true;
+            imgElement.style.opacity = 0.3;
+            removeBtn.hidden = true;
+            addBtn.hidden = false;
+
+            //update to list of Picfile
+            uploadedImgBeRemoved.push(imgId);
+            convertFromListToInput(uploadedImgBeRemoved, 'UploadedImgIdBeRemoved');
+
+
+        }
+
+        function ReAddUploadImg(addBtn, removeBtn, imgElement, imgId) {
+            //console.log("hidden " + elementId);
+            // elementId.hidden = true;
+            imgElement.style.opacity = 1;
+            removeBtn.hidden = false;
+            addBtn.hidden = true;
+
+            //update list
+            var index = -1;
+            for (var i = 0; i < uploadedImgBeRemoved.length; i++) {
+                if (uploadedImgBeRemoved[i] == imgId) {
+                    index = i;
+                }
+            }
+            if (index > -1) {
+                uploadedImgBeRemoved.splice(index, 1);
+            }
+            convertFromListToInput(uploadedImgBeRemoved, 'UploadedImgIdBeRemoved');
+        }
+
+
+
+    </script>
+
+
+}
+

@@ -1,0 +1,52 @@
+﻿@using  HC.Model
+
+@model HC.Model.ViewModel.ProductVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Creat Product";
+    if (Model.Product.Id != 0)
+    {
+        title = "Update Product";
+    }
+}
+<div class=" form-group row">
+
+    <div class="col-lg-4 align-content-md-around "  >
+        @if (Model.Images != null)
+        {
+            @foreach (var img in Model.Images)
+            {
+                var imgsource = Model.ImagePath + "\\" + img.FileName;
+                var imgId = "PicElement" + img.Id;
+                <div class="productimage">
+                    <img src="@imgsource" id="@imgId" width="100%" />
+                    <br />
+                </div>
+
+            }
+
+            <br />
+        }
+    </div>
+
+
+    <div class="col-8">
+        <h2 class="text-primary"> @Model.Product.Name</h2>
+        <div class="form-group row">
+            <div class=" col-8"> @Model.Product.Description </div>
+        </div>
+        <div class="form-group row">
+            <div class=" col-8"> Price : @Model.Product.Price $  </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+    
+
+    
+
+    
+

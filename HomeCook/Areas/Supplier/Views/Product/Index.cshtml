@@ -1,0 +1,55 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using  HC.Model
+
+<br />
+<div class="backgroundwhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary"> Product List</h2>
+        </div>
+        @if (User.IsInRole(UserType.SupplierRole))
+        {
+            <div class=" col-6 text-sm-right">
+                <a asp-action="Upsert" class="btn btn-primary"><i class="fas fa-plus"></i> Add a product</a>
+            </div>
+        }
+
+    </div>
+    <br />
+    <br />
+    <div class=" row">
+        <button class="btn btn-info btn-sm" type="button" id="btnAll">All</button> &nbsp;
+        <button class="btn btn-info btn-sm" type="button" id="btnPending">Pendding</button>&nbsp;
+        <button class="btn btn-info btn-sm" type="button" id="btnActive">Active</button>&nbsp;
+        <button class="btn btn-info btn-sm" type="button" id="btnDeleted">Deleted</button>&nbsp;
+        <br />
+    </div>
+    <br />
+    <table id="tblProduct" class="table table-hover table-bordered" stype="width : 100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Unit</th>
+                <th>Category</th>
+                <th>Date Post</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+
+    </table>
+
+</div>
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+    <script src="~/js/product_function.js"></script>
+}

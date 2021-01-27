@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="backgroundwhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary"> Unit List</h2>
+        </div>
+        <div class=" col-6 text-sm-right">
+            <a asp-action="Upsert" class="btn btn-primary"><i class="fas fa-plus"></i> Add a unit</a>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <table id="tblCategory" class="table table-hover table-bordered" stype="width : 100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category Name</th>
+                <th></th>
+            </tr>
+        </thead>
+
+    </table>
+
+</div>
+
+@section Scripts{
+    <script src="~/js/unit.js"></script>
+
+}

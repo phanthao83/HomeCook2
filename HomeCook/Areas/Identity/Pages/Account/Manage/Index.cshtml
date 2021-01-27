@@ -1,0 +1,181 @@
+﻿@page
+@model IndexModel
+@using HC.Model
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+</br>
+
+<div class="row">
+
+
+</div>
+
+<form id="profile-form" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div style="width :40% ; ">
+            @if (Model.Input.AvartarUrl.Length > 0)
+            {
+                var picUrl = Model.AvatarPath + "\\" + Model.Input.AvartarUrl;
+                <img src="@picUrl" style="height:100px;" />
+            }
+        </div>
+
+        <div style="width : 60% ; ">
+            <div class="form-group row ">
+                <h5> @Model.Input.Email</h5>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-4">
+                    <label asp-for="Input.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Input.Name" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="Input.Name" class="text-danger"></span>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.PhoneNumber"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="mb-3" style="width : 100% ; ">
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.Country"></label>
+                </div>
+                <div class="col-8">
+                    <select class="custom-select">
+                        <option value="1" selected>US</option>
+                        <option value="2">Canada</option>
+                        <option value="3">Vietnam</option>
+                    </select>
+                </div>
+            </div>
+            <span asp-validation-for="Input.Country" class="text-danger"></span>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.Address1"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Input.Address1" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="Input.Address1" class="text-danger"></span>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.Address2"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Input.Address2" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="Input.Address2" class="text-danger"></span>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.City"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Input.City" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="Input.City" class="text-danger"></span>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.State"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Input.State" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="Input.State" class="text-danger"></span>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.PostCode"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Input.PostCode" class="form-control" />
+                </div>
+            </div>
+            <span asp-validation-for="Input.PostCode" class="text-danger"></span>
+
+
+
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Input.AvartarUrl"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" class="filepond" name="filepond"
+                           data-max-file-size="3MB" data-max-files="1" id="exampleInputFile" aria-describedby="fileHelp">
+                    <input asp-for="Input.AvartarUrl" hidden />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-8 offset-4">
+            <div class="row">
+                <div class="col">
+                    <button id="update-profile-button" type="submit " class="btn btn-primary form-control"> Save </button>
+                </div>
+
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-success form-control">Back To List</a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="~/js/filepondDelcare.js"></script>
+    <script>
+         $(document).ready(function () {
+            createFilePond("@Url.Action("UploadAvatar", "User")", "Input_AvartarUrl");
+         });
+
+    </script>
+    
+    }

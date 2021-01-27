@@ -1,0 +1,95 @@
+﻿@model HC.Model.ViewModel.ListProductView
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "";
+    @if (Model.SelectedCatgory == 0)
+    {
+        title = "Top all products";
+    }
+    else {
+        title = "Product of " + Model.SelectedCategoryName; 
+    }
+
+
+}
+    <div class="backgroundwhite">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-primary">@title</h2>
+            </div>
+        </div>
+
+        <input type="hidden" asp-for="ProductImagePath" />
+        <input type="hidden" asp-for="SelectedCatgory" />
+        <br />
+        <br />
+
+        <table id="tblProduct" class="table table-hover table-bordered" stype="width : 100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th> Name</th>
+                    <th> Price </th>
+                    <th> Unit </th>
+                    <th>Category Name</th>
+                </tr>
+            </thead>
+
+        </table>
+
+    </div>
+
+@section Scripts{
+    <script>
+        var dataTable;
+        var productImgPath;
+
+        $(document).ready(function () {
+            productImgPath = document.getElementById("ProductImagePath").value;
+
+            loadDataTable();
+
+        });
+
+
+        function changeCategory() {
+
+
+            console.log(document.getElementById("SelectedCatgory").value);
+
+        }
+
+        function loadDataTable() {
+            var categoryId = document.getElementById("SelectedCatgory").value;
+            console.log("LoadDataTable with status ");
+            dataTable = $("#tblProduct").DataTable(
+                {
+                    "ajax": {
+                        "url": "/customer/product/GetActiveProducts/${categoryId}",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        {
+                            "data": "fileName",
+                            "render": function (data) {
+                                var img = productImgPath + "\\" + data;
+                                console.log(img);
+                                return `<div class = "productbigimage" > <img  src="${img}"  width ="100%"  /> </div>`;
+                            },
+                            "width": "10%"
+                        },
+                        { "data": "name" , "width": "30%" },
+                        { "data": "price", "width": "15%" },
+                        { "data": "unitName", "width": "15%" },
+                        { "data": "categoryName", "width": "40%" }
+
+                    ],
+                    "language": {
+                        "emptyTable": "Not found any category"
+                    }
+
+                });
+        }
+    </script>
+}

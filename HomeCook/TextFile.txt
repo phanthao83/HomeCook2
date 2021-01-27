@@ -1,0 +1,13 @@
+﻿https://pqina.nl/filepond/docs/patterns/api/filepond-instance/#events
+
+2) Dragger 
+
+3) TinyMce -> Editor for textarea setup
+Add script link in @section Script
+tinymce.init ({
+	selector : "textare",
+	plugin : "lists",
+	menubar :"file edit format"
+})
+
+4) Datatable.net
