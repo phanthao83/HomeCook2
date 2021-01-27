@@ -206,7 +206,7 @@ namespace HC.DataAccess.Initializer
                     EmailConfirmed = false,
                     Name = "Home Cook Admin " + i.ToString()
                 };
-                CreateUser(userInfo);
+                CreateUser(userInfo, true, false, false);
             }
 
             for (int i = 1; i <= numberSupplier; i++)
@@ -230,13 +230,13 @@ namespace HC.DataAccess.Initializer
                     EmailConfirmed = false,
                     Name = "Customer " + i.ToString()
                 };
-                CreateUser(userInfo);
+                CreateUser(userInfo, false, false, true);
             }
 
 
         }
 
-        private void CreateUser(ApplicationUser userInfo, bool isAdmin = true, bool isSupplier =false, bool isCustomer = true) 
+        private void CreateUser(ApplicationUser userInfo, bool isAdmin = true, bool isSupplier =false, bool isCustomer = false) 
         {
 
             _ = _userManager.CreateAsync(userInfo, "P@ssword123").GetAwaiter().GetResult();
