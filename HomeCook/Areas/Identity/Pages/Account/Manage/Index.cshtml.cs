@@ -149,7 +149,9 @@ namespace HomeCook.Areas.Identity.Pages.Account.Manage
                 if (savedAvatarFileName.Length > 0)
                 {
                     //Delete the old avatar on server 
-                    ImageManagment.DeleteOldAvatar(_hostEnvironment, updateduser.AvartarUrl); 
+                    if (updateduser.AvartarUrl != null && updateduser.AvartarUrl.Length > 0) {
+                        ImageManagment.DeleteOldAvatar(_hostEnvironment, updateduser.AvartarUrl);
+                    }
                     updateduser.AvartarUrl = savedAvatarFileName;
                    
                 }
