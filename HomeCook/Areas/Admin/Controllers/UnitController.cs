@@ -6,10 +6,12 @@ using HC.DataAccess.Data.Repository.IRepository;
 using HC.Model;
 using HC.Model.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HomeCook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class UnitController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

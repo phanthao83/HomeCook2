@@ -4,11 +4,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using HC.DataAccess.Data.Repository.IRepository;
 using HC.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace HomeCook.Areas.Admin.Controllers
 {
@@ -73,7 +76,16 @@ namespace HomeCook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new {data = _unitOfWork.Category.GetAll() }); 
+            return Json(new {data = _unitOfWork.Category.GetAll(), opt =  new JsonSerializerOptions() }); 
+            //Newtonsoft.Json.JsonSerializerSettings
+          //  return Json(new {data = _unitOfWork.Category.GetAll(), JsonSerializerSettings = new JsonSerializerSettings() });
+        //  JsonSerializerOptions
+                //return Json(model, new JsonSerializerSettings
+            //         {
+            //           options.Formatting = Formatting.Indented,
+            ///});
+            
+            
         }
 
         [HttpDelete]

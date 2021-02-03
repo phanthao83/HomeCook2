@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeCook.Areas.Customer.Controllers
 {
-    [Area("Customer")]
+     [Area("Customer")]
     public class OrderController : Controller
     {
         public IActionResult Index()

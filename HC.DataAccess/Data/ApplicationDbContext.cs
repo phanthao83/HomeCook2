@@ -9,7 +9,7 @@ namespace HC.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Category> Category { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
         public DbSet<ApplicationUser> AppUser { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductImage> ProductImage { get; set; }
