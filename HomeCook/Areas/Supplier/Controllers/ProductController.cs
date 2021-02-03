@@ -182,6 +182,7 @@ namespace HomeCook.Areas.Supplier.Controllers
                 {
                     pImg.IsDefault = defaultImg;
                     defaultImg = false;
+                    _unitOfWork.ProductImage.Update(pImg); 
                 }
             }
             return true;

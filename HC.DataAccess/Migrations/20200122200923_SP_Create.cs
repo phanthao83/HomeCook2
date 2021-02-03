@@ -13,7 +13,7 @@ namespace HC.DataAccess.Migrations
                 @CategoryId int
                 AS
                 BEGIN
-                Select TOP 4 Product.ID as ID , Product.Name as Name , Product.Price as Price , 
+                Select Product.ID as ID , Product.Name as Name , Product.Price as Price , 
                 Category.Id as CategoryId, Category.Name as CategoryName, 
                   Unit.Id as UnitId , Unit.Name as UnitName, FileName as FileName ,  COALESCE( Sum( OrderDetail.Quantity),0) as PQuantity
                 from  Product 
@@ -34,7 +34,7 @@ namespace HC.DataAccess.Migrations
                 CREATE PROCEDURE [dbo].[SelectNewProduct] 
                 AS
                 BEGIN
-                Select TOP 4 Product.ID as ID , Product.Name as Name , Product.Price as Price , 
+                Select  Product.ID as ID , Product.Name as Name , Product.Price as Price , 
                 Category.Id as CategoryId, Category.Name as CategoryName, 
                   Unit.Id as UnitId , Unit.Name as UnitName, FileName ,  0 as PQuantity
                 from  Product 
@@ -56,7 +56,7 @@ namespace HC.DataAccess.Migrations
                     CREATE PROCEDURE [dbo].[SelectTop4NewProduct] 
                     AS
                     BEGIN
-                    Select TOP 4 Product.ID as ID , Product.Name as Name , Product.Price as Price , 
+                    Select Product.ID as ID , Product.Name as Name , Product.Price as Price , 
                     Category.Id as CategoryId, Category.Name as CategoryName, 
                       Unit.Id as UnitId , Unit.Name as UnitName,  FileName ,  0 as PQuantity
                     from  Product 
