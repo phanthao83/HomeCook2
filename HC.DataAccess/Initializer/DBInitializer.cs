@@ -49,10 +49,10 @@ namespace HC.DataAccess.Initializer
 
             //Create Admin user
             int n = 5;
-            CreateUsers(1,2,2 );
+            CreateUsers(1,3, 5 );
             CreateCategoryandUnit();
             CreateProduct(4);
-            CreateProduct(4, true); 
+            CreateProduct(10, true); 
 
 
         }
