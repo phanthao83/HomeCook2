@@ -19,7 +19,7 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="row">
         <div style="width :40% ; ">
-            @if (Model.Input.AvartarUrl.Length > 0)
+            @if (Model.Input.AvartarUrl !=null && Model.Input.AvartarUrl.Length > 0)
             {
                 var picUrl = Model.AvatarPath + "\\" + Model.Input.AvartarUrl;
                 <img src="@picUrl" style="height:100px;" />
