@@ -35,7 +35,7 @@ namespace HC.DataAccess.Data.Repository
             selectedItem.FileName = productImg.FileName;
             selectedItem.ProductId = productImg.ProductId; 
 
-            _db.SaveChanges();
+          //  _db.SaveChanges();
         }
 
         

@@ -31,7 +31,7 @@ namespace HC.DataAccess.Data.Repository
 
             selectedReview.Comment = review.Comment;
 
-            _db.SaveChanges();
+           // _db.SaveChanges();
         }
     }
 }

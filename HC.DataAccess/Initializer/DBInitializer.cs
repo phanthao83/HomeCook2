@@ -48,11 +48,10 @@ namespace HC.DataAccess.Initializer
             _unitOfWork = new UnitOfWork(_db);
 
             //Create Admin user
-            int n = 5;
-            CreateUsers(1,5, 5 );
+             CreateUsers(1,2, 5 );
             CreateCategoryandUnit();
             CreateProduct(4);
-            CreateProduct(10, true); 
+            CreateProduct(2, true); 
 
 
         }

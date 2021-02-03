@@ -31,7 +31,7 @@ namespace HC.DataAccess.Data.Repository
             selectedItem.Price = product.Price; 
 
 
-            _db.SaveChanges();
+          //  _db.SaveChanges();
         }
     }
    

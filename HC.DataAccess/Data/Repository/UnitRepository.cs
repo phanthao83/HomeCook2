@@ -31,7 +31,7 @@ namespace HC.DataAccess.Data.Repository
             selectedCategory.Name = unit.Name;
             selectedCategory.Description = unit.Description;
            
-            _db.SaveChanges();
+       //     _db.SaveChanges();
         }
     }
     

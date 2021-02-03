@@ -36,7 +36,7 @@ namespace HC.DataAccess.Data.Repository
             selectedCategory.Description = category.Description;
             selectedCategory.DisplayOrder = category.DisplayOrder;
 
-            _db.SaveChanges(); 
+        //    _db.SaveChanges(); 
         }
     }
 }
